@@ -1,0 +1,23 @@
+---
+# - name: update apt cache 
+#   apt:  
+#     update_cache: yes
+#     cache_valid_time: 3600
+
+
+
+- name: ensure apache is installed on Debian 
+  apt: name=apache2 state=present
+  
+  register:  data
+- debug: 
+    msg: data
+
+- name: using curl data url 
+  command:  curl localhost
+  register: curl
+
+# - debug: 
+#     msg: "{{curl.stdout_lines}}"
+
+  

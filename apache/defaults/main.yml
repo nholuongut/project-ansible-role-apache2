@@ -1,0 +1,10 @@
+---
+# https://github.com/anjilinux/project-ansible-role-apache2-/blob/master/vars/Debian.yml
+apache_enablerepo: "" 
+apache_state: started
+apache_restart_state: restarted 
+apache_packages_state: present
+apache_package: apache2
+
+
+

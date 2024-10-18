@@ -1,0 +1,4 @@
+---
+# vars file for apche
+ansible_os_family: 'Debian' 
+ansible_distribution: 'Debian'

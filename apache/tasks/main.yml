@@ -1,0 +1,39 @@
+- name: include os-specific variables 
+  include_vars: "{{ ansible_os_family }}.yml"
+  
+- name: define apache_packages 
+  set_fact: 
+    apache_packages: "{{ apache_packages | list }}"  
+  when: apache_packages is not defined 
+
+#- include_tasks: "{{ ansible_os_family  }}-install.yml"  
+
+
+- name: test all INCLUDING FILES USING LOOP
+  include_tasks: "{{ item }}"
+  loop: 
+    - Debian-install.yml
+    - service.yml
+    - configure.yml
+  register: red  
+
+- name: OUT PUT DATA 
+  debug: 
+      var: red
+
+# - name:   apache  remove/absent 
+#   apt: name=apache2 state=stopped
+
+# - name: stop service 
+#   service:  name=apache2  state=absent 
+  
+
+- name: remove apache2 package
+  apt:
+    name: apache2
+    state: absent
+
+- name: add php support for apache
+  apt:
+    name: libapache2-mod-php
+    state: absent      
